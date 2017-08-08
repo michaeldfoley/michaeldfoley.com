@@ -1,11 +1,11 @@
 <template>
-  <section class="container">
+  <main class="container">
     <div>
       <h2 class="subtitle">
         About
       </h2>
     </div>
-  </section>
+  </main>
 </template>
 
 <script>

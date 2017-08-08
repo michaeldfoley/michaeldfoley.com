@@ -3,7 +3,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Michael Foley',
+    titleTemplate: 'Michael Foley - %s',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -17,28 +17,27 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#3B8070' },
+  // loading: { color: '#3B8070' },
+  loading: false,
   /*
    ** Plugins
    */
   plugins: [
-    { src: '~/plugins/fonts.js', ssr: false }
+    { src: '~/plugins/fonts', ssr: false }
   ],
   /*
   ** Build configuration
   */
   build: {
-    /*
-    ** Run ESLINT on save
-    */
     extend (config, ctx) {
-      if (ctx.isClient) {
+      if (ctx.dev && ctx.isClient) {
+        config.entry.app = ['gsap','~plugins/DrawSVGPlugin', '~plugins/SplitText', config.entry.app];
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
-        })
+        });
       }
     }
   }
