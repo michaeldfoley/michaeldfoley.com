@@ -3,6 +3,8 @@
 */
 
 $primary: #41b883;
+$meta-color: #555566;
+$text-color: #333344;
 
 
 /*
@@ -11,3 +13,31 @@ $primary: #41b883;
 
 $font_main: "ff-tisa-web-pro", Palatino, Georgia, serif;
 $font_head: "brandon-grotesque", "Helvetica Neue", Arial, sans-serif;
+$font-size: 1.6em;
+
+
+/*
+  Spacing
+*/
+
+$section-break: 5rem;
+$text-width: 75rem;
+
+
+/*
+  Breakpoints
+*/
+
+@mixin bp($point:'') {
+
+  @if $point == sm {
+    @media (min-width: 426px) { @content; }
+  }
+  @else if $point == md {
+    @media (min-width: 720px)  { @content; }
+  }
+  @else {
+    @media screen { @content; }
+  }
+}
+

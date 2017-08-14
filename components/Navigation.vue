@@ -1,11 +1,10 @@
 <template>
   <div>
-
     <div id="navbar" class="bar">
       <nav>
         <nuxt-link exact to="/">Work</nuxt-link>
-        <nuxt-link to="/about">About</nuxt-link>
-        <nuxt-link to="/resume">Resume</nuxt-link>
+        <nuxt-link to="/adogperson">About</nuxt-link>
+        <nuxt-link to="/available">Resume</nuxt-link>
       </nav>
     </div>
 
@@ -38,8 +37,9 @@
     background-image:
       linear-gradient(40deg, transparent 70%,  darken($primary, 5%) 70%),
       linear-gradient(140deg, $primary 30%, darken($primary, 2%) 30%);
+    border-top: 1px solid darken($primary, 10%);
     display: flex;
-    height: 70px;
+    height: 49px;
     width: 100vw;
     position: fixed;
     bottom: 0;
@@ -52,13 +52,14 @@
     margin: 20px 10px 0;
     height: 50px;
     width: 50px;
-    position: fixed;
+    position: absolute;
+    top: 0;
     z-index: 1002;
 
     svg {
-      stroke: #111111;
       height: 100%;
       width: 100%;
+      stroke: #111111;
     }
   }
 
@@ -95,7 +96,11 @@
       height: 100vh;
       width: 70px;
     }
+    .logo {
+      position: fixed;
+    }
     nav {
+      font-size: 16px;
       margin: 80px 0 20px;
       max-height: 350px;
       flex-direction: column;
@@ -111,63 +116,87 @@
 
   @media screen and (min-width: 426px) and (min-height: 385px) {
     nav {
-      font-size: 1.2em;
+      font-size: 19px;
     }
   }
 
   @media screen and (min-width: 426px) and (min-height: 520px) {
     nav {
-      font-size: 1.3em;
+      font-size: 21px;
       margin-top: 100px;
     }
   }
 </style>
 <script>
+/* global SplitText */
 import {TweenLite, TimelineLite, Sine} from 'gsap';
 export default {
   mounted: () => {
     let tl = new TimelineLite();
     let vh = window.innerHeight;
     let vw = window.innerWidth;
-    TweenLite.set('#logo, #navbar, #main', { visibility: 'visible' });
+    let spt = new SplitText('h1', {type: 'chars'});
+    let chars = spt.chars;
+    TweenLite.set(chars, {
+      transformPerspective: 600,
+      perspective: 300,
+      transformStyle: 'preserve-3d'
+    });
+    TweenLite.set('#logo, #navbar, #pageHead, #main', { visibility: 'visible' });
     TweenLite.set('#clipline', { visibility: 'hidden' });
-    tl.add('opening');
+    tl.add('draw');
     tl.from('#letterm', 0.7, {drawSVG: 0})
       .from('#letterf', 0.4, {drawSVG: 0})
       .set('#clipline', { visibility: 'visible' })
-      .from('#letterfcross', 0.15, {drawSVG: 0})
-      .from('#logo', 0.8, {
-        scale: 5,
-        transformOrigin: '50% 50%',
-        xPercent: '-50',
-        yPercent: '-50',
-        x: (vw * 0.5),
-        y: (vh * 0.5),
-        ease: Sine.easeOut
-      }, '+=0.3');
-
+      .from('#letterfcross', 0.15, {drawSVG: 0});
+    tl.from('#logo svg', 0.8, {
+      scale: 5,
+      stroke: '#41b883',
+      transformOrigin: '50% 50%',
+      xPercent: '-50',
+      yPercent: '-50',
+      x: (vw * 0.5),
+      y: (vh * 0.5),
+      ease: Sine.easeOut
+    }, '+=0.3');
+    tl.add('opening', '-=0.3');
     if (vw < 426) {
       tl.from('#navbar', 0.3, {
         yPercent: 100,
         ease: Sine.easeOut
-      }, '-=0.3');
+      }, 'opening');
     } else {
       tl.from('#navbar', 0.3, {
         xPercent: -100,
         ease: Sine.easeOut
-      }, '-=0.3')
+      }, 'opening')
         .from('#navbar nav', 0.3, {
-          y: -70,
+          yPercent: -50,
           ease: Sine.easeOut
-        }, '-=0.22');
+        }, 'opening');
     }
-
-    tl.from('#main', 0.5, {
-      opacity: 0,
-      scale: 0.8,
-      transformOrigin: '50% 50%',
+    tl.from('#pageHead', 0.5, {
+      yPercent: -100,
       ease: Sine.easeOut
-    }, '-=0.6');
+    }, 'opening')
+      .staggerFrom(chars, 0.35, {
+        z: -100,
+        rotationY: 180,
+        opacity: 0.5,
+        ease: Sine.easeOut
+      }, 0.03, '-=0.2')
+      .staggerFrom('#pageImages img', 0.5, {
+        opacity: 0,
+        yPercent: -100,
+        transformOrigin: '50% 50%',
+        ease: Sine.easeOut
+      }, '0.15', 'opening')
+      .staggerFrom('#main > *', 0.5, {
+        opacity: 0,
+        yPercent: -100,
+        transformOrigin: '50% 50%',
+        ease: Sine.easeOut
+      }, 0.1, 'opening');
   }
 };
 </script>
