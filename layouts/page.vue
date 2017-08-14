@@ -21,9 +21,22 @@
   max-width: $text-width;
 }
 
+.word {
+  display: inline-block;
+}
+
+.word + .word {
+  margin-left: 6px;
+}
+
 h2 {
+  color: #b5b5b7;
   font-size: 1em;
   text-transform: uppercase;
+}
+
+h3 {
+  font-size: 1em;
 }
 
 .title {

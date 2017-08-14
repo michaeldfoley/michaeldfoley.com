@@ -59,7 +59,7 @@
     svg {
       height: 100%;
       width: 100%;
-      stroke: #111111;
+      stroke: #093032;
     }
   }
 
@@ -76,7 +76,7 @@
     transition: font-size .3s;
 
     a {
-      color: #111;
+      color: #fff;
       display: block;
       margin: 0 10px;
       text-decoration: none;
@@ -92,6 +92,7 @@
       background-image:
         linear-gradient(-40deg, transparent 70%, $primary 70%),
         linear-gradient(40deg, darken($primary, 5%) 30%, darken($primary, 2%) 30%);
+      border: 0;
       flex-direction: column;
       height: 100vh;
       width: 70px;
@@ -149,16 +150,18 @@ export default {
       .from('#letterf', 0.4, {drawSVG: 0})
       .set('#clipline', { visibility: 'visible' })
       .from('#letterfcross', 0.15, {drawSVG: 0});
+    tl.add('slidelogo', '+=0.3');
     tl.from('#logo svg', 0.8, {
       scale: 5,
-      stroke: '#41b883',
+      stroke: '#ffffff',
       transformOrigin: '50% 50%',
       xPercent: '-50',
       yPercent: '-50',
       x: (vw * 0.5),
       y: (vh * 0.5),
       ease: Sine.easeOut
-    }, '+=0.3');
+    }, 'slidelogo');
+    tl.from('body', 0.8, { backgroundColor: '#1d7477' }, 'slidelogo');
     tl.add('opening', '-=0.3');
     if (vw < 426) {
       tl.from('#navbar', 0.3, {

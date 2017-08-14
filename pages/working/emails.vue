@@ -2,7 +2,7 @@
   <div>
     <header id="pageHead" class="page-head">
       <div id="headline" class="headline">
-        <h1 class="title">Email Templates</h1>
+        <h1 class="title"><span class="word">Email </span><span class="word">Templates</span></h1>
         <aside class="text meta">
           <ul class="meta-tags">
             <li>HTML</li>
@@ -54,7 +54,7 @@
       mode: 'out-in',
       css: false,
       enter (el, done) {
-        console.log('transition in', el);
+        console.log('enter', el);
         TweenLite.set('#pageHead, #main', { visibility: 'visible' });
         let tl = new TimelineLite({onComplete: done});
         let spt = new SplitText('h1', {type: 'chars'});
@@ -78,7 +78,6 @@
         }, 0.03, 'start');
       },
       leave (el, done) {
-        console.log('transition out');
         let tl = new TimelineLite({onComplete: done});
         TweenLite.set('h1', {
           transformPerspective: 600,
@@ -112,7 +111,7 @@
     visibility: hidden;
   }
   .page-head {
-    background-color: #cdcddd;
+    background-color: #f0eceb;
     border-bottom: 1px solid rgba(0,0,0,0.1);
   }
   .page-image {
