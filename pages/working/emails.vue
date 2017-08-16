@@ -55,7 +55,6 @@
       css: false,
       enter (el, done) {
         console.log('enter', el);
-        TweenLite.set('#pageHead, #main', { visibility: 'visible' });
         let tl = new TimelineLite({onComplete: done});
         let spt = new SplitText('h1', {type: 'chars'});
         let chars = spt.chars;
@@ -107,9 +106,6 @@
 
 <style scoped lang="scss">
   @import "~assets/_vars.scss";
-  #pageHead, #main {
-    visibility: hidden;
-  }
   .page-head {
     background-color: #f0eceb;
     border-bottom: 1px solid rgba(0,0,0,0.1);

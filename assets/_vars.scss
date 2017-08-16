@@ -31,10 +31,10 @@ $text-width: 75rem;
 @mixin bp($point:'') {
 
   @if $point == sm {
-    @media (min-width: 426px) { @content; }
+    @media screen and (min-width: 426px) { @content; }
   }
   @else if $point == md {
-    @media (min-width: 720px)  { @content; }
+    @media screen and (min-width: 720px)  { @content; }
   }
   @else {
     @media screen { @content; }

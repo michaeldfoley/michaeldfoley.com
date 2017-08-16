@@ -6,52 +6,72 @@ window.onNuxtReady(() => {
   let tl = new TimelineLite();
   let vh = window.innerHeight;
   let vw = window.innerWidth;
+  let timing = -0.000000053 * Math.pow(vw, 2) + 0.00037 * vw + 0.61;
   let spt = new SplitText('h1', {type: 'chars'});
   let chars = spt.chars;
+  let tweenDefaults = {
+    ease: Sine.easeOut,
+    clearProps: 'all'
+  };
+  let tweenNavbar = {};
+  let tweenNav = {};
+
+  if (vw < 426) {
+    Object.assign(tweenNavbar, {
+      height: vh
+    }, tweenDefaults);
+    Object.assign(tweenNav, {
+      fontSize: '4px',
+      maxWidth: '160px',
+      xPercent: '-74',
+      x: (vw * 0.5),
+      y: '5px'
+    }, tweenDefaults);
+  } else {
+    Object.assign(tweenNavbar, {
+      width: vw
+    }, tweenDefaults);
+    Object.assign(tweenNav, {
+      fontSize: '4px',
+      maxHeight: '160px',
+      rotation: 90,
+      yPercent: '-107',
+      y: (vh * 0.5),
+      x: '-35px'
+    }, tweenDefaults);
+  }
+
   TweenLite.set(chars, {
     transformPerspective: 600,
     perspective: 300,
     transformStyle: 'preserve-3d'
   });
-  TweenLite.set('#logo, #navbar, #pageHead, #main', { visibility: 'visible' });
+  TweenLite.set('body', { visibility: 'visible' });
   TweenLite.set('#clipline', { visibility: 'hidden' });
   tl.add('draw', '+=0.4');
   tl.from('#letterm', 0.7, {drawSVG: 0}, 'draw')
     .from('#letterf', 0.4, {drawSVG: 0})
     .set('#clipline', { visibility: 'visible' })
-    .from('#letterfcross', 0.15, {drawSVG: 0});
-  tl.add('slidelogo', '+=0.3');
-  tl.from('#logo svg', 0.8, {
-    scale: 5,
-    stroke: '#ffffff',
-    transformOrigin: '50% 50%',
-    xPercent: '-50',
-    yPercent: '-50',
-    x: (vw * 0.5),
-    y: (vh * 0.5),
-    ease: Sine.easeOut
-  }, 'slidelogo');
-  tl.from('body', 0.8, { backgroundImage: 'linear-gradient(-45deg, #1d7477, #49a7a3)' }, 'slidelogo');
-  tl.add('opening', '-=0.3');
-  if (vw < 426) {
-    tl.from('#navbar', 0.3, {
-      yPercent: 100,
+    .from('#letterfcross', 0.15, {drawSVG: 0})
+    .add('slidelogo', '+=0.3')
+    .from('#logo svg', timing, {
+      scale: 5,
+      stroke: '#ffffff',
+      transformOrigin: '50% 50%',
+      xPercent: '-50',
+      yPercent: '-50',
+      x: (vw * 0.5),
+      y: (vh * 0.5),
       ease: Sine.easeOut
-    }, 'opening');
-  } else {
-    tl.from('#navbar', 0.3, {
-      xPercent: -100,
+    }, 'slidelogo')
+    .add('opening', '-=0.3')
+    .from('#navbar nav', 0.1, { opacity: 0 }, 'slidelogo')
+    .from('#navbar', timing, tweenNavbar, 'slidelogo')
+    .from('#navbar nav', timing, tweenNav, 'slidelogo')
+    .from('#pageHead', 0.5, {
+      yPercent: -100,
       ease: Sine.easeOut
     }, 'opening')
-      .from('#navbar nav', 0.3, {
-        yPercent: -50,
-        ease: Sine.easeOut
-      }, 'opening');
-  }
-  tl.from('#pageHead', 0.5, {
-    yPercent: -100,
-    ease: Sine.easeOut
-  }, 'opening')
     .staggerFrom(chars, 0.35, {
       z: -100,
       rotationY: 180,

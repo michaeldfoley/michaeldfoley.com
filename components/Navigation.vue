@@ -26,13 +26,6 @@
     </nuxt-link>
   </div>
 </template>
-<style lang="scss">
-  .wf-loading, .wf-active {
-    #logo, #navbar, #main {
-      visibility: hidden;
-    }
-  }
-</style>
 <style scoped lang="scss">
   @import "~assets/_vars.scss";
   .bar {
@@ -89,11 +82,13 @@
     color: #ffffff;
   }
 
-  @media screen and (min-width: 426px) {
+  @include bp(sm) {
     .bar {
       background-image:
-        linear-gradient(-40deg, transparent 70%, $primary 70%),
-        linear-gradient(40deg, darken($primary, 5%) 30%, darken($primary, 2%) 30%);
+        linear-gradient(-40deg, transparent 50%, $primary 50%),
+        linear-gradient(40deg, darken($primary, 5%) 50%, darken($primary, 2%) 50%);
+      background-position: 65% center;
+      background-size: 100vw 100vh;
       border: 0;
       flex-direction: column;
       height: 100vh;
