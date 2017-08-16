@@ -24,7 +24,7 @@ module.exports = {
    ** Plugins
    */
   plugins: [
-    { src: '~/plugins/fonts', ssr: false }
+    { ssr: false, src: '~plugins/OpeningAnimation' }
   ],
   /*
   ** Build configuration
@@ -32,7 +32,6 @@ module.exports = {
   build: {
     extend (config, ctx) {
       if (ctx.dev && ctx.isClient) {
-        config.entry.app = ['gsap','~plugins/DrawSVGPlugin', '~plugins/SplitText', config.entry.app];
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,

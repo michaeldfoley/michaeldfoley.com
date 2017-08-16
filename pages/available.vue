@@ -1,9 +1,9 @@
 <template>
   <main class="container">
     <div>
-      <h2 class="subtitle">
-        Resume
-      </h2>
+      <h1 class="title">
+        About
+      </h1>
     </div>
   </main>
 </template>
