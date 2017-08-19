@@ -1,23 +1,13 @@
 <template>
   <div>
-    <header id="pageHead" class="page-head">
-      <div id="headline" class="headline">
-        <h1 class="title"><span class="word">Email </span><span class="word">Templates</span></h1>
-        <aside class="text meta">
-          <ul class="meta-tags">
-            <li>HTML</li>
-            <li>CSS/SASS</li>
-            <li>PugJS</li>
-          </ul>
-        </aside>
-      </div>
+    <header-card url="https://github.com/fordhamumc/mailchimp-templates" title="Email Templates" tags="HTML,CSS/SASS,PugJS">
       <div id="pageImages" class="page-image">
         <img src="/img/fordhamnews.jpg" alt="Fordham News">
         <img src="/img/travel.jpg" alt="Travel">
         <img src="/img/event.jpg" alt="Event">
         <img src="/img/alumninews.jpg" alt="Alumni News">
       </div>
-    </header>
+    </header-card>
     <main class="container" id="main">
       <section class="text tldr">
         <p>Developed a universal Mailchimp email template that can be used by designers with limited technical abilities to create modern and cross-client emails without having to write code.</p>
@@ -33,22 +23,27 @@
       </section>
       <section class="text">
         <h2>Challenges/Solutions</h2>
-        <h3>Modular design</h3>
         <p>I decided early on to build the template as a collection of interchangeable modules. This allowed me to create fewer templates that could solve more problems and allowed the designers more flexibility in how they arranged an email to fit to the content. Since the templates themselves were going to function modularly, I also build a design system for building the templates that was modular. This allowed me to also recycle modules across templates further reducing redundant work. This allowed updates to a module to propagate throughout all templates automatically.</p>
-        <h3>Documentation</h3>
         <p>To accompany the new templates, I built a comprehensive online documentation that not only explained the templates but also the department&rsquo;s email process and best practices.</p>
       </section>
     </main>
+    <next-project url="http://something.com">Some Project</next-project>
   </div>
 </template>
 
 <script>
   /* global SplitText */
   import {TimelineLite, TweenLite, Sine} from 'gsap';
+  import HeaderCard from '~components/HeaderCard';
+  import NextProject from '~components/NextProject';
   export default {
     layout: 'page',
     head: {
       title: 'Email Templates'
+    },
+    components: {
+      HeaderCard,
+      NextProject
     },
     transition: {
       mode: 'out-in',
@@ -106,10 +101,6 @@
 
 <style scoped lang="scss">
   @import "~assets/_vars.scss";
-  .page-head {
-    background-color: #f0eceb;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-  }
   .page-image {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -118,17 +109,8 @@
     margin: 0 1.5rem;
 
     img {
+      max-width: 100%;
       box-shadow: -4px 5px 15px 0 rgba(0, 0, 0, 0.56);
     }
-  }
-
-  @include bp(sm) {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-  }
-
-  @include bp(md) {
-    margin-left: 0rem;
-    margin-right: 0rem;
   }
 </style>

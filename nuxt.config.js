@@ -24,7 +24,8 @@ module.exports = {
    ** Plugins
    */
   plugins: [
-    { ssr: false, src: '~plugins/OpeningAnimation' }
+    { ssr: false, src: '~plugins/OpeningAnimation' },
+    { ssr: false, src: '~plugins/Console' }
   ],
   /*
   ** Build configuration

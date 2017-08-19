@@ -14,6 +14,7 @@ $text-color: #3b3a36;
 $font_main: "ff-tisa-web-pro", Palatino, Georgia, serif;
 $font_head: "brandon-grotesque", "Helvetica Neue", Arial, sans-serif;
 $font-size: 1.6em;
+$line-height: 1.6;
 
 
 /*
@@ -25,11 +26,11 @@ $text-width: 75rem;
 
 
 /*
-  Breakpoints
+  Mixins
 */
 
+/* Breakpoints */
 @mixin bp($point:'') {
-
   @if $point == sm {
     @media screen and (min-width: 426px) { @content; }
   }
@@ -38,6 +39,34 @@ $text-width: 75rem;
   }
   @else {
     @media screen { @content; }
+  }
+}
+
+/* Button - Gradient */
+@mixin btn-gradient($size, $left, $right) {
+  border-width: 0 $size;
+  border-style: solid;
+  border-left-color: $left;
+  border-right-color: $right;
+  background-image:
+    linear-gradient(135deg, $left, $right),
+    linear-gradient(135deg, $left, $right);
+  background-size: 100% $size;
+  background-position: 0 100%, 0 0;
+  background-repeat: no-repeat;
+  background-clip: border-box;
+
+  span {
+    background: -webkit-linear-gradient(45deg, $left, $right);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  &:active {
+    background: linear-gradient(135deg, $left, $right);
+  }
+  &:active span {
+    background: none;
+    -webkit-text-fill-color: #fff;
   }
 }
 

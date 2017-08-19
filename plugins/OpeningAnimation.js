@@ -9,6 +9,11 @@ window.onNuxtReady(() => {
   let timing = -0.000000053 * Math.pow(vw, 2) + 0.00037 * vw + 0.61;
   let spt = new SplitText('h1', {type: 'chars'});
   let chars = spt.chars;
+  let perspective = {
+    transformPerspective: 600,
+    perspective: 300,
+    transformStyle: 'preserve-3d'
+  };
   let tweenDefaults = {
     ease: Sine.easeOut,
     clearProps: 'all'
@@ -41,11 +46,8 @@ window.onNuxtReady(() => {
     }, tweenDefaults);
   }
 
-  TweenLite.set(chars, {
-    transformPerspective: 600,
-    perspective: 300,
-    transformStyle: 'preserve-3d'
-  });
+  TweenLite.set(chars, perspective);
+  TweenLite.set('.headline a', perspective);
   TweenLite.set('body', { visibility: 'visible' });
   TweenLite.set('#clipline', { visibility: 'hidden' });
   tl.add('draw', '+=0.4');
@@ -77,7 +79,17 @@ window.onNuxtReady(() => {
       rotationY: 180,
       opacity: 0.5,
       ease: Sine.easeOut
-    }, 0.03, '-=0.2')
+    }, 0.03, 'opening+=0.3')
+    .staggerFrom('.meta-tags li', 0.35, {
+      xPercent: -100,
+      opacity: 0,
+      ease: Sine.easeOut
+    }, 0.08, 'opening+=0.5')
+    .from('.headline a', 0.35, {
+      rotationY: 90,
+      ease: Sine.easeOut,
+      clearProps: 'all'
+    }, 'opening+=0.5')
     .staggerFrom('#pageImages img', 0.5, {
       opacity: 0,
       yPercent: -100,
@@ -89,5 +101,9 @@ window.onNuxtReady(() => {
       yPercent: -100,
       transformOrigin: '50% 50%',
       ease: Sine.easeOut
-    }, 0.1, 'opening');
+    }, 0.1, 'opening')
+    .from('.next-project a', 0.5, {
+      opacity: 0,
+      yPercent: 100
+    }, '-=0.5');
 });

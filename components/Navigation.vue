@@ -1,12 +1,5 @@
 <template>
   <div>
-    <div id="navbar" class="bar">
-      <nav>
-        <nuxt-link exact to="/">Work</nuxt-link>
-        <nuxt-link to="/adogperson">About</nuxt-link>
-        <nuxt-link to="/available">Resume</nuxt-link>
-      </nav>
-    </div>
 
     <nuxt-link exact to="/" class="logo" id="logo">
       <svg xmlns="http://www.w3.org/2000/svg" width="71.4px" height="70px" viewBox="0 0 71.4 70" aria-labelledby="title" role="presentation">
@@ -24,6 +17,14 @@
         <line id="letterfcross" fill="none" stroke-width="3" stroke-miterlimit="10" x1="39.5" y1="31" x2="57.6" y2="31" clip-path="url(#mf)"/>
       </svg>
     </nuxt-link>
+
+    <div id="navbar" class="bar">
+      <nav>
+        <nuxt-link exact to="/">Work</nuxt-link>
+        <nuxt-link to="/adogperson">About</nuxt-link>
+        <nuxt-link to="/available">Resume</nuxt-link>
+      </nav>
+    </div>
   </div>
 </template>
 <style scoped lang="scss">
@@ -60,13 +61,13 @@
 
   nav {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     flex-grow: 1;
     font-family: $font_head;
     font-size: 1em;
     font-weight: 400;
-    margin: 0 20px 0 10px;
-    justify-content: space-between;
-    align-items: center;
+    margin: 0 5px;
     text-transform: uppercase;
     transition: font-size .3s;
 
@@ -90,7 +91,6 @@
       background-position: 65% center;
       background-size: 100vw 100vh;
       border: 0;
-      flex-direction: column;
       height: 100vh;
       width: 70px;
     }
@@ -98,14 +98,13 @@
       position: fixed;
     }
     nav {
+      display: grid;
+      grid-gap: 20px;
       font-size: 16px;
-      margin: 80px 0 20px;
+      margin: 85px 0 20px;
       max-height: 350px;
-      flex-direction: column;
-      align-items: center;
 
       a {
-        margin: 10px 0;
         transform: rotate(180deg);
         writing-mode: vertical-rl;
       }
@@ -115,12 +114,14 @@
   @media screen and (min-width: 426px) and (min-height: 385px) {
     nav {
       font-size: 19px;
+      margin-top: 90px;
     }
   }
 
   @media screen and (min-width: 426px) and (min-height: 520px) {
     nav {
       font-size: 21px;
+      grid-gap: 50px;
       margin-top: 100px;
     }
   }
