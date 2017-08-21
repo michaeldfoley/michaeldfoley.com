@@ -67,9 +67,9 @@ window.onNuxtReady(() => {
       ease: Sine.easeOut
     }, 'slidelogo')
     .add('opening', '-=0.3')
-    .from('#navbar nav', 0.1, { opacity: 0 }, 'slidelogo')
-    .from('#navbar', timing, tweenNavbar, 'slidelogo')
-    .from('#navbar nav', timing, tweenNav, 'slidelogo')
+    // .from('#navbar nav', 0.1, { opacity: 0 }, 'slidelogo')
+    // .from('#navbar', timing, tweenNavbar, 'slidelogo')
+    // .from('#navbar nav', timing, tweenNav, 'slidelogo')
     .from('#pageHead', 0.5, {
       yPercent: -100,
       ease: Sine.easeOut

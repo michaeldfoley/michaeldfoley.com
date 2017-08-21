@@ -98,7 +98,6 @@
 
   @include bp(sm) {
     .page-head {
-      margin-left: 70px;
       height: 50vmin;
     }
     .title {

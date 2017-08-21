@@ -1,15 +1,32 @@
 <template>
   <div>
-    <Navigation />
-    <nuxt />
+    <Logo id="identity" :class="{active: isNavOpen}" />
+    <Navigation v-show="isNavOpen" />
+    <nuxt id="pageContent" @click="closeNav" />
   </div>
 </template>
 
 <script>
-  import Navigation from '~/components/Navigation.vue';
+  import { mapGetters } from 'vuex';
+  import Logo from '~/components/Logo';
+  import Navigation from '~/components/Navigation';
   export default {
     components: {
+      Logo,
       Navigation
+    },
+    computed: {
+      ...mapGetters({
+        isNavOpen: 'getNavOpen'
+      })
+    },
+    methods: {
+      closeNav () {
+        console.log('closeNav');
+        if (this.isNavOpen) {
+          this.$store.commit('closeNav');
+        }
+      }
     }
   };
 </script>
