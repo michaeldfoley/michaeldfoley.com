@@ -3,9 +3,9 @@
     <header-card url="https://github.com/fordhamumc/mailchimp-templates" title="Email Templates" tags="HTML,CSS/SASS,PugJS">
       <div id="pageImages" class="page-image">
         <img src="/img/fordhamnews.jpg" alt="Fordham News">
-        <img src="/img/travel.jpg" alt="Travel">
-        <img src="/img/event.jpg" alt="Event">
         <img src="/img/alumninews.jpg" alt="Alumni News">
+        <img src="/img/event.jpg" alt="Event">
+        <img src="/img/travel.jpg" alt="Travel">
       </div>
     </header-card>
     <main class="container" id="main">

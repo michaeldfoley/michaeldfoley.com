@@ -21,44 +21,27 @@ window.onNuxtReady(() => {
   let tweenNavbar = {};
   let tweenNav = {};
 
-  if (vw < 426) {
-    Object.assign(tweenNavbar, {
-      height: vh
-    }, tweenDefaults);
-    Object.assign(tweenNav, {
-      fontSize: '4px',
-      maxWidth: '160px',
-      xPercent: '-74',
-      x: (vw * 0.5),
-      y: '5px'
-    }, tweenDefaults);
-  } else {
-    Object.assign(tweenNavbar, {
-      width: vw
-    }, tweenDefaults);
-    Object.assign(tweenNav, {
-      fontSize: '4px',
-      maxHeight: '160px',
-      rotation: 90,
-      yPercent: '-107',
-      y: (vh * 0.5),
-      x: '-35px'
-    }, tweenDefaults);
-  }
+  Object.assign(tweenNavbar, {
+    display: 'block',
+    width: vw
+  }, tweenDefaults);
+  Object.assign(tweenNav, {
+    yPercent: -100,
+    opacity: 0
+  }, tweenDefaults);
 
   TweenLite.set(chars, perspective);
-  TweenLite.set('.headline a', perspective);
+  TweenLite.set('.headline .btn', perspective);
   TweenLite.set('body', { visibility: 'visible' });
   TweenLite.set('#clipline', { visibility: 'hidden' });
-  tl.add('draw', '+=0.4');
-  tl.from('#letterm', 0.7, {drawSVG: 0}, 'draw')
+  tl.from('#letterm', 0.7, {drawSVG: 0})
     .from('#letterf', 0.4, {drawSVG: 0})
     .set('#clipline', { visibility: 'visible' })
     .from('#letterfcross', 0.15, {drawSVG: 0})
     .add('slidelogo', '+=0.3')
-    .from('#logo svg', timing, {
+    .from('#logo', timing, {
       scale: 5,
-      stroke: '#ffffff',
+      stroke: '#fff',
       transformOrigin: '50% 50%',
       xPercent: '-50',
       yPercent: '-50',
@@ -67,9 +50,7 @@ window.onNuxtReady(() => {
       ease: Sine.easeOut
     }, 'slidelogo')
     .add('opening', '-=0.3')
-    // .from('#navbar nav', 0.1, { opacity: 0 }, 'slidelogo')
-    // .from('#navbar', timing, tweenNavbar, 'slidelogo')
-    // .from('#navbar nav', timing, tweenNav, 'slidelogo')
+    .from('#navbar', timing, tweenNavbar, 'slidelogo')
     .from('#pageHead', 0.5, {
       yPercent: -100,
       ease: Sine.easeOut
@@ -85,7 +66,7 @@ window.onNuxtReady(() => {
       opacity: 0,
       ease: Sine.easeOut
     }, 0.08, 'opening+=0.5')
-    .from('.headline a', 0.35, {
+    .from('.headline .btn', 0.35, {
       rotationY: 90,
       ease: Sine.easeOut,
       clearProps: 'all'

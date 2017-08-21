@@ -38,6 +38,7 @@
   @import "~assets/_vars.scss";
   .page-head {
     background-color: #f0eceb;
+    background-image: linear-gradient(135deg, #f0eceb, #f2f2f2, #dbdbdb, #eaeaea);
     border-bottom: 1px solid rgba(0,0,0,0.1);
     height: 100vmin;
     margin-bottom: $section-break;
@@ -77,7 +78,7 @@
     font-size: 0.8em;
     padding: 1rem 3rem 0.7rem;
     margin-top: 2rem;
-    @include btn-gradient(1px, #3dade9, #bf2fcb);
+    @include btn-gradient(1px, #0B549F, #44beb6);
   }
 
   @include bp(md) {

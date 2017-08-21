@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 70" class="logo" aria-labelledby="title" role="presentation">
+    <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 70" class="logo" aria-labelledby="title" role="presentation">
       <title id="title" lang="en">MF Logo</title>
       <defs>
         <clipPath id="mf">
@@ -16,9 +16,9 @@
     </svg>
     <button @click="$store.commit('toggleNav')" id="navBtn" aria-label="Open Navigation" aria-expanded>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-label="Menu Toggle" role="presentation">
-        <line x1="0" x2="48" y1="16" y2="16" class="nav-line" />
-        <line x1="0" x2="48" y1="32" y2="32" class="nav-line" />
-        <line x1="0" x2="48" y1="48" y2="48" class="nav-line" />
+        <line x1="2" x2="48" y1="16" y2="16" class="nav-line" />
+        <line x1="2" x2="48" y1="32" y2="32" class="nav-line" />
+        <line x1="2" x2="48" y1="48" y2="48" class="nav-line" />
         <line x1="8" x2="40" y1="16" y2="48" class="cross-line" />
         <line x1="8" x2="40" y1="48" y2="16" class="cross-line" />
       </svg>
@@ -67,7 +67,7 @@
   .cross-line,
   .nav-line {
     transform-origin: 50% 50%;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.6s ease-in-out;
   }
 
   .cross-line {
