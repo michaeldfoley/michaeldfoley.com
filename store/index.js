@@ -3,18 +3,20 @@ import Vuex from 'vuex';
 const store = () => new Vuex.Store({
 
   state: {
-    isNavOpen: false
+    isNavOpen: false,
+    isTriggerOpen: false
   },
   mutations: {
-    toggleNav (state) {
-      state.isNavOpen = !state.isNavOpen;
+    toggleNav (state, show) {
+      state.isNavOpen = (typeof show === 'boolean') ? show : !state.isNavOpen;
     },
-    closeNav (state) {
-      state.isNavOpen = false;
+    toggleTrigger (state, show) {
+      state.isTriggerOpen = (typeof show === 'boolean') ? show : !state.isTriggerOpen;
     }
   },
   getters: {
-    getNavOpen: state => state.isNavOpen
+    getNavState: state => state.isNavOpen,
+    getTriggerState: state => state.isTriggerOpen
   }
 });
 

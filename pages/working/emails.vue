@@ -27,7 +27,7 @@
         <p>To accompany the new templates, I built a comprehensive online documentation that not only explained the templates but also the department&rsquo;s email process and best practices.</p>
       </section>
     </main>
-    <next-project url="http://something.com">Some Project</next-project>
+    <next-project url="/working">Some Project</next-project>
   </div>
 </template>
 

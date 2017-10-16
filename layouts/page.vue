@@ -1,18 +1,18 @@
 <template>
   <div>
-    <Logo id="identity" :class="{active: isNavOpen}" />
-    <Navigation v-show="isNavOpen" />
-    <nuxt id="pageContent" @click="closeNav" />
+    <Navigation />
+    <Trigger id="trigger" />
+    <nuxt id="pageContent" />
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
-  import Logo from '~/components/Logo';
+  import Trigger from '~/components/Trigger';
   import Navigation from '~/components/Navigation';
   export default {
     components: {
-      Logo,
+      Trigger,
       Navigation
     },
     computed: {
@@ -21,10 +21,10 @@
       })
     },
     methods: {
-      closeNav () {
-        console.log('closeNav');
+      hideNav () {
+        console.log('hideNav');
         if (this.isNavOpen) {
-          this.$store.commit('closeNav');
+          this.$store.commit('toggleNav', false);
         }
       }
     }

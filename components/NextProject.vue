@@ -1,6 +1,6 @@
 <template>
   <nav class="container next-project">
-    <a :href="url">
+    <nuxt-link :to="url">
       <div>
         <span class="next-project--label">Next Project</span>
         <h1><slot></slot></h1>
@@ -8,7 +8,7 @@
       <svg version="1.1" id="svg-arrow" class="next-project--arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 22" xml:space="preserve">
         <polygon points="19.6,1.4 26.2,8 0,8 0,10 26.2,10 19.6,16.6 21,18 30,9 21,0 "/>
       </svg>
-    </a>
+    </nuxt-link>
   </nav>
 </template>
 <script>

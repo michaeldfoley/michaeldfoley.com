@@ -16,13 +16,9 @@
 
 <script>
 /* global SplitText */
-import Logo from '~/components/Logo.vue';
 import {TimelineMax, TweenMax, Sine} from 'gsap';
 
 export default {
-  components: {
-    Logo
-  },
   layout: 'page',
   head: {
     title: 'Work'
