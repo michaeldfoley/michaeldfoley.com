@@ -1,4 +1,4 @@
-export default ({ app }) => {
+export default ({app}) => {
   /*
    ** Only run on client-side and only in production mode
    */

@@ -15,21 +15,25 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-
-  @media screen and (min-width: 1200px) {
-    font-size: 12px;
-  }
 }
 body {
-  background-image: linear-gradient(-45deg, #fff, #fff);
+  background: white;
   font-size: $font-size;
   line-height: $line-height;
   min-height: 100vh;
   padding-bottom: 49px;
+
+  @media screen and (min-width: 62.5rem) {
+    font-size: calc(#{$font-size - 0.5} + 0.5vw);
+  }
 }
 
 p {
   margin-bottom: 1.2em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 a {
@@ -37,15 +41,16 @@ a {
   text-decoration: none;
 }
 
-h1 {
+h1, .h1, h2, h3, h4, h5, h6 {
+  font-family: $font_head;
+  font-weight: $weight_head;
+  color: $headline-color;
+}
+
+h1, .h1 {
   font-size: 2em;
   font-weight: 400;
   line-height: 1.2;
-}
-
-h2, h3, h4, h5, h6 {
-  font-family: $font_head;
-  font-weight: $weight_head;
 }
 
 hr {
@@ -61,13 +66,6 @@ hr {
 .container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-}
-
-
-.wf-loading, .wf-active {
-  body {
-    visibility: hidden;
-  }
 }
 
 .btn {
@@ -90,6 +88,11 @@ hr {
   }
 }
 
+.lead {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 @include bp(sm) {
   body {
     padding-bottom: 0;
@@ -105,4 +108,10 @@ hr {
     padding-left: 10rem;
     padding-right: 10rem;
   }
+}
+
+.hidden {
+  overflow: hidden;
+  max-height: 0;
+  max-width: 0;
 }

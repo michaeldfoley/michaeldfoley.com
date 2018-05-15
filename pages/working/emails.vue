@@ -1,14 +1,7 @@
 <template>
   <div>
-    <header-card url="https://github.com/fordhamumc/mailchimp-templates" title="Email Templates" tags="HTML,CSS/SASS,PugJS">
-      <div id="pageImages" class="page-image">
-        <img src="/img/fordhamnews.jpg" alt="Fordham News">
-        <img src="/img/alumninews.jpg" alt="Alumni News">
-        <img src="/img/event.jpg" alt="Event">
-        <img src="/img/travel.jpg" alt="Travel">
-      </div>
-    </header-card>
-    <main class="container" id="main">
+    <main id="main">
+      <email-template url="https://github.com/fordhamumc/mailchimp-templates" container="header" dclass="hidden"></email-template>
       <section class="text tldr">
         <p>Developed a universal Mailchimp email template that can be used by designers with limited technical abilities to create modern and cross-client emails without having to write code.</p>
       </section>
@@ -33,67 +26,127 @@
 
 <script>
   /* global SplitText */
-  import {TimelineLite, TweenLite, Sine} from 'gsap';
-  import HeaderCard from '~components/HeaderCard';
-  import NextProject from '~components/NextProject';
+  import {TimelineLite, Sine} from 'gsap';
+  import EmailTemplate from '~/components/portfolio/EmailTemplate';
+  import NextProject from '~/components/NextProject';
+  import { mapGetters } from 'vuex';
   export default {
-    layout: 'page',
     head: {
       title: 'Email Templates'
     },
     components: {
-      HeaderCard,
+      EmailTemplate,
       NextProject
+    },
+    computed: {
+      ...mapGetters({
+        isOpeningFinished: 'getOpeningState'
+      })
+    },
+    watch: {
+      isOpeningFinished (state) {
+        if (!state) {
+          console.log('Opening Finished', this);
+        }
+      }
     },
     transition: {
       mode: 'out-in',
       css: false,
       enter (el, done) {
-        console.log('enter', el);
-        let tl = new TimelineLite({onComplete: done});
+        let tl = new TimelineLite({onComplete: () => {
+          this.$store.commit('toggleTrigger', true);
+          done();
+        }});
+        tl.add('opening');
         let spt = new SplitText('h1', {type: 'chars'});
+        console.log(spt);
+        tl.add('opening')
+          .staggerFrom('#main > section', 0.5, {
+            opacity: 0,
+            yPercent: -100,
+            transformOrigin: '50% 50%',
+            ease: Sine.easeOut
+          }, 0.1, 'opening')
+          .from('.btn', 0.6, {
+            z: -100,
+            rotationY: -90,
+            ease: Sine.easeOut
+          }, 'opening');
+        /* console.log('enter transition', window.$nuxt);
         let chars = spt.chars;
-        TweenLite.set(chars, {
+        let perspective = {
           transformPerspective: 600,
           perspective: 300,
           transformStyle: 'preserve-3d'
-        });
-        tl.add('start');
-        tl.from(el, 0.8, {
-          scale: 0.9,
-          transformOrigin: '50% 50%',
-          ease: Sine.easeOut
-        }, 'start');
-        tl.staggerFrom(chars, 0.8, {
-          z: -100,
-          rotationY: 180,
-          opacity: 0.5,
-          ease: Sine.easeOut
-        }, 0.03, 'start');
+        };
+        TweenLite.set(chars, perspective);
+        TweenLite.set('.headline .btn', perspective);
+        tl.add('opening')
+          .add('headline', 'opening+=0.5')
+          .from('#pageHead', 0.5, {
+            yPercent: -100,
+            ease: Sine.easeOut
+          }, 'opening')
+          .staggerFrom(chars, 0.35, {
+            z: -100,
+            rotationY: 180,
+            opacity: 0.5,
+            ease: Sine.easeOut
+          }, 0.03, 'opening+=0.3')
+          .staggerFrom('.meta-tags li', 0.35, {
+            xPercent: -100,
+            opacity: 0,
+            ease: Sine.easeOut
+          }, 0.08, 'headline')
+          .from('.headline .btn', 0.35, {
+            rotationY: 90,
+            ease: Sine.easeOut,
+            clearProps: 'all'
+          }, 'headline')
+          .staggerFrom('#pageImages img', 0.5, {
+            opacity: 0,
+            yPercent: -100,
+            transformOrigin: '50% 50%',
+            ease: Sine.easeOut
+          }, '0.15', 'opening')
+          .staggerFrom('#main > *', 0.5, {
+            opacity: 0,
+            yPercent: -100,
+            transformOrigin: '50% 50%',
+            ease: Sine.easeOut
+          }, 0.1, 'opening')
+          .from('.next-project a', 0.5, {
+            opacity: 0,
+            yPercent: 100
+          }, '-=0.5');
+          */
       },
       leave (el, done) {
         let tl = new TimelineLite({onComplete: done});
-        TweenLite.set('h1', {
-          transformPerspective: 600,
-          perspective: 300,
-          transformStyle: 'preserve-3d'
-        });
         tl.add('leave');
-        tl.to(el, 0.8, {
-          scale: 0.9,
-          opacity: 0,
-          transformOrigin: '50% 50%',
-          ease: Sine.easeIn
-        }, 'leave');
-        tl.to('h1', 0.75, {
-          opacity: 0,
-          z: -100,
-          rotationY: 180,
-          scale: 0.5,
-          transformOrigin: '50% 50%',
-          ease: Sine.easeIn
-        }, 'leave');
-        tl.timeScale(1.5);
+        if (this.$route.name === 'index') {
+          tl.to(window, 0.4, {
+            scrollTo: '#working-emails',
+            ease: Sine.easeOut
+          }, 'leave')
+            .to('#working-emails', 0.4, {
+              minHeight: '100vh',
+              ease: Sine.easeIn
+            }, 'leave')
+            .add('show', 'leave+=0.3')
+            .to('#working-emails .hidden', 0.3, {
+              display: 'block',
+              maxHeight: 150,
+              opacity: 1,
+              ease: Sine.easeOut
+            }, 'show')
+            .to('#working-emails .btn', 0.3, {
+              z: -100,
+              rotationY: -90,
+              ease: Sine.easeOut
+            }, 'show');
+        }
       }
     }
   };
@@ -101,6 +154,10 @@
 
 <style scoped lang="scss">
   @import "~assets/_vars.scss";
+  .card {
+    height: 50vh;
+    margin-bottom: $section-break;
+  }
   .page-image {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

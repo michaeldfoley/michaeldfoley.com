@@ -1,4 +1,6 @@
 const path = require('path');
+const gsapPath = '/node_modules/gsap/src/uncompressed/';
+var root = __dirname;
 module.exports = {
   /*
   ** Headers of the page
@@ -18,22 +20,21 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  // loading: { color: '#3B8070' },
   loading: false,
   /*
    ** Plugins
    */
   plugins: [
-    { ssr: false, src: '~plugins/OpeningAnimation' },
-    { ssr: false, src: '~plugins/Console' },
-    { ssr: false, src: '~plugins/CloseNav' }
+    { ssr: false, src: '~/plugins/OpeningAnimation' },
+    { ssr: false, src: '~/plugins/Console' },
+    { ssr: false, src: '~/plugins/CloseNav' }
   ],
   /*
   ** Build configuration
   */
   build: {
-    extend (config, ctx) {
-      if (ctx.dev && ctx.isClient) {
+    extend (config, {isDev, isClient}) {
+      if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,

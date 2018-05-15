@@ -1,23 +1,11 @@
 <template>
-  <header id="navbar" class="container" role="banner">
-    <svg xmlns="http://www.w3.org/2000/svg" id="logo" viewBox="0 0 71.4 70" class="nav-logo" aria-labelledby="title" role="presentation" focusable="false">
+  <div id="navbar" class="container" role="banner" v-show="show" :aria-hidden="!isNavOpen.toString()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 70" class="nav-logo" role="presentation">
       <title id="title">MF Logo</title>
-      <defs>
-        <clipPath id="mf">
-          <path id="clipm" d="M21.4,32.5V15.2c0-5.7-0.7-8.4-4.4-8.4c-6.3,0-9.2,4.4-9.2,4.4V28l0.6,4.5H2.8v-24L2,3l5.8-0.7v4.5c2.5-2.8,6.8-4.7,10.7-4.7c3.2,0,6.3,1.6,7.4,4.7c2.5-2.8,6.8-4.7,10.7-4.7c4,0,7.9,2.3,7.9,7.1v18.9l0.6,4.4h-5.6V15.2c0-5.7-0.7-8.4-4.4-8.4c-4.8,0-7.7,2.7-8.8,3.9v17.4l0.6,4.4H21.4z"/>
-          <path id="clipf" fill="#273A93" d="M69.9,17.4c0,0.9-0.2,1.7-0.6,2.3c-0.5,0.8-1.1,1.1-1.9,1.1c-0.7,0-1.4-0.2-1.9-0.5c-0.6-0.4-0.8-0.9-0.8-1.5c0-0.8,0.3-1.4,1-1.8c-0.7-0.4-1.2-0.5-1.7-0.5c-2.6,0-4.9,1.2-6.9,3.7c-1.6,2-3.2,5.1-4.7,9.3l-1,2.9c-1.7,5.3-3.4,10.6-5.2,15.9c-2.2,6.1-4.6,10.7-7.1,13.7c-3.4,3.9-7.4,5.8-12.1,5.8c-1.9,0-3.6-0.5-5.1-1.5c-1.7-1.1-2.6-2.5-2.6-4.3c0-0.8,0.3-1.6,0.9-2.2c0.6-0.6,1.3-0.9,2.1-0.9c0.7,0,1.3,0.2,1.8,0.7c0.5,0.5,0.8,1,0.8,1.7c0,1.3-0.6,2.2-1.7,2.6c1.9,0.6,3.2,1,3.7,1c3.1,0,5.8-1.7,8-5.2c1.6-2.5,3.4-6.7,5.3-12.4c2.9-8.9,4.5-13.8,4.9-14.9l1.2-2.9c4.5-10.4,10.6-15.7,18.4-15.7c1.3,0,2.5,0.3,3.5,0.8C69.3,15.3,69.9,16.2,69.9,17.4z"/>
-          <path id="clipline" d="M57.6,29.6l-1.2,2.9H39.6l1.2-2.9H57.6z"/>
-        </clipPath>
-      </defs>
-      <symbol id="mfLogo" viewBox="0 0 71.4 70">
-        <path id="letterm" fill="none" stroke-width="6" stroke-miterlimit="10" d="M4.8,2.2l0.1,6.1l0.8,24.8c0,0-0.2-22.3,0.1-22.7c2-2.7,17.1-10.6,17.6-1.2l0.7,23.3l0.6-23c0,0,16.9-10.3,17,0.4c0,0,0.1,11.7-0.1,18.5l0.6,4.6l0.6,0l0.3,0.1" clip-path="url(#mf)"/>
-        <path id="letterf" fill="none" stroke-width="6.1" stroke-linecap="round" stroke-miterlimit="10" d="M67.3,18.7c0.4-3.1-1.9-3.2-5.8-2.6c-4,0.6-8.5,5.8-10.3,8.8c-0.7,1.1-1.4,2.8-2.1,4.8c-0.3,0.8-0.6,1.7-0.9,2.7c-0.8,2.8-2,5.9-3,9.1c-0.8,2.3-1.9,6-2.9,8.5c0,0-3.1,11.3-8.9,15.6c-4.5,3.5-13-2-11.3-4" clip-path="url(#mf)"/>
-        <line id="letterfcross" fill="none" stroke-width="3" stroke-miterlimit="10" x1="39.5" y1="31" x2="57.6" y2="31" clip-path="url(#mf)"/>
-      </symbol>
       <use xlink:href="#mfLogo" />
     </svg>
     <div class="nav-name">Michael&nbsp;Foley</div>
-    <button class="nav-close" @click="$store.commit('toggleNav', false)" aria-label="Close Navigation">
+    <button class="nav-close" :aria-expanded="isNavOpen.toString()" @click="$store.commit('toggleNav', false)" aria-label="Close Navigation">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" focusable="false">
         <line x1="0" x2="32" y1="0" y2="32" class="cross-line" />
         <line x1="0" x2="32" y1="32" y2="0" class="cross-line" />
@@ -25,14 +13,14 @@
     </button>
     <nav role="navigation">
       <div id="caseLabel" class="nav-label">Case Studies</div>
-      <ul class="nav-case" aria-labelledby="caseLabel">
+      <ul class="nav-case" role="menu" aria-labelledby="caseLabel">
         <li><nuxt-link to="/working/emails">Email Templates</nuxt-link></li>
-        <li><nuxt-link to="/working">Giving Day</nuxt-link></li>
+        <li><nuxt-link to="/working/giving">Giving Day</nuxt-link></li>
         <li><nuxt-link to="/working">Collaborative Playlist</nuxt-link></li>
         <li><nuxt-link to="/working">Photo Galley</nuxt-link></li>
       </ul>
       <div id="socialLabel" class="nav-label">Follow Me</div>
-      <ul class="nav-social" aria-labelledby="socialLabel">
+      <ul class="nav-social" role="menu" aria-labelledby="socialLabel">
         <li><a href="https://twitter.com/michaeldfoley">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 204" aria-labelledby="title" role="presentation">
             <title id="title" lang="en">Twitter</title>
@@ -59,7 +47,7 @@
           </svg>
         </a></li>
       </ul>
-      <ul class="nav-other" aria-label="Other Links">
+      <ul class="nav-other" role="menu" aria-label="Other Links">
         <li><nuxt-link exact to="/">Home</nuxt-link></li>
         <li><nuxt-link to="/available">Resume</nuxt-link></li>
         <li><a href="mailto:mike@foley.is">Contact</a></li>
@@ -69,7 +57,7 @@
     <div class="copyright">
       &copy; {{year}} Michael Foley
     </div>
-  </header>
+  </div>
 </template>
 <script>
   /* global SplitText */
@@ -85,23 +73,32 @@
         return (new Date()).getFullYear();
       }
     },
+    data () {
+      return {
+        show: this.isNavOpen
+      };
+    },
     watch: {
       isNavOpen (newValue) {
         if (newValue) {
+          console.log('nav is open');
           this.open(this.$el);
         } else {
+          console.log('nav is closed');
           this.close(this.$el);
         }
       }
     },
     methods: {
       open (el) {
+        this.show = true;
+        this.$store.commit('toggleTrigger', false);
         let tl = new TimelineLite();
         let spt = new SplitText('.nav-name', {type: 'chars'});
         let chars = spt.chars;
         tl.add('start')
           .to(el, 0.5, {
-            xPercent: 0,
+            xPercent: 100,
             ease: Sine.easeOut
           })
           .add('opened')
@@ -125,11 +122,12 @@
       close (el) {
         let done = () => {
           this.$store.commit('toggleTrigger', true);
+          this.show = false;
         };
         let tl = new TimelineLite({onComplete: done});
         tl.add('start')
           .to(el, 0.5, {
-            xPercent: -100,
+            xPercent: 0,
             ease: Sine.easeOut
           }, 'start')
           .to('.js-overlay', 0.2, {
@@ -159,7 +157,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1002;
+    transform: translate(-100%, 0%)
   }
 
   a {
@@ -170,18 +169,20 @@
     a {
       display: block;
       line-height: 1.4;
+      &:after {
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 38 34'%3E%3Cpolyline fill='none' stroke='#fff' stroke-width='3' points='10,10 17,17 10,24'/%3E%3C/svg%3E");
+        display: inline-block;
+        line-height: 1;
+        width: 1em;
+        vertical-align: middle;
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: transform .2s ease-out .15s, opacity .2s ease-out .15s;
+      }
 
-      &:hover {
-        animation: shimmer 0.6s linear;
-        background-image: linear-gradient(-70deg,
-          rgba(255, 255, 255, 1) 48%,
-          rgba(11, 84, 159, 0.7) 50%,
-          rgba(255, 255, 255, 1) 52%
-        );
-        background-size: 200% 100%;
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
+      &:hover:after {
+        transform: translateX(0);
+        opacity: 1;
       }
     }
   }
@@ -261,6 +262,9 @@
       stroke: #ffffff;
       height: 2rem;
       width: 2rem;
+    }
+    a:after {
+      content: none;
     }
   }
 
