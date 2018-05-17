@@ -29,10 +29,10 @@
 
 <script>
 import EmailTemplate from '~/components/portfolio/EmailTemplate';
+import {TimelineLite, TweenLite, Sine} from 'gsap';
 if (process.browser) {
   require('gsap/ScrollToPlugin');
 }
-import {TimelineLite, TweenLite, Sine} from 'gsap';
 
 export default {
   head: {

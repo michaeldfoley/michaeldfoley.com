@@ -1,17 +1,12 @@
 @import '_vars.scss';
+@import-normalize;
 
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
-}
 html {
   background-color: $text_color;
   color: $text-color;
   font-family: $font_main;
   font-size: 10px;
   font-weight: 400;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
@@ -20,6 +15,7 @@ body {
   background: white;
   font-size: $font-size;
   line-height: $line-height;
+  margin: 0;
   min-height: 100vh;
   padding-bottom: 49px;
 
@@ -27,7 +23,9 @@ body {
     font-size: calc(#{$font-size - 0.5} + 0.5vw);
   }
 }
-
+::placeholder {
+  color: gray;
+}
 p {
   margin-bottom: 1.2em;
 

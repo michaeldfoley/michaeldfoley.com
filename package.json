@@ -4,10 +4,16 @@
   "description": "michaeldfoley.com portfolio site",
   "author": "Michael Foley <michaeldfoley@gmail.com>",
   "private": true,
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead"
+  ],
   "dependencies": {
+    "browserslist": "^3.2.7",
     "debounce": "^1.1.0",
-    "gsap": "^1.20.2",
-    "normalize.css": "^7.0.0",
+    "gsap": "^1.20.4",
     "nuxt": "1.4.0"
   },
   "scripts": {
@@ -19,16 +25,20 @@
     "precommit": "npm run lint"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "eslint": "^3.15.0",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-loader": "^1.6.1",
-    "eslint-plugin-html": "^2.0.0",
-    "eslint-plugin-promise": "^3.4.1",
-    "eslint-plugin-standard": "^2.0.1",
-    "node-sass": "^4.5.3",
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-html": "^4.0.3",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "node-sass": "^4.9.0",
+    "postcss": "^6.0.22",
+    "postcss-normalize": "^4.0.0",
     "push-dir": "^0.4.1",
-    "sass-loader": "^6.0.6",
-    "script-loader": "^0.7.0"
+    "sass-loader": "^7.0.1",
+    "script-loader": "^0.7.2"
   }
 }

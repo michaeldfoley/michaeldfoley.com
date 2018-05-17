@@ -16,7 +16,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  css: ['normalize.css', '~/assets/_main.scss'],
+  css: ['~/assets/_main.scss'],
   /*
   ** Customize the progress-bar color
   */
@@ -33,6 +33,11 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    postcss: [
+      require('postcss-normalize')(),
+      require('autoprefixer')(),
+      require('cssnano')()
+    ],
     extend (config, {isDev, isClient}) {
       if (isDev && isClient) {
         config.module.rules.push({
