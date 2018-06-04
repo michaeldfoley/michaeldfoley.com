@@ -114,10 +114,11 @@
     align-items: center;
     justify-content: space-around;
     overflow: hidden;
-    padding: 4rem 0 2rem;
+    padding: 2rem 0;
 
     @include bp(md) {
       justify-content: flex-end;
+      padding: 0;
     }
   }
   .meta-tags {

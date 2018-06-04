@@ -101,7 +101,7 @@
   }
   .nav-label {
     display: none;
-    font-size: 0.5em;
+    font-size: 0.75em;
     letter-spacing: 0.1em;
     position: absolute;
     text-align: center;

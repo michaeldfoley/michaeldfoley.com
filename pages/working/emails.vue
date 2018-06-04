@@ -7,15 +7,15 @@
       </section>
       <hr class="section--break">
       <section class="text">
-        <h2>Brief</h2>
+        <h2 class="section-header">Brief</h2>
         <p>Fordham&rsquo;s marketing department produces close to 1,000 email messages per year. With only 1 developer on staff, the varying technical abilities of the design staff, and the eccentricities of the hundreds of email clients in existence, a template that was needed that could be used to create everything from event invitations to newsletters which would render properly on any email client and device but require minimal technical ability.</p>
       </section>
       <section class="text">
-        <h2>Metrics</h2>
+        <h2 class="section-header">Metrics</h2>
         <p>Success of this project would be measured by the number of email jobs that could be handled by the design staff and the reduction in the number of support requests that I received. </p>
       </section>
       <section class="text">
-        <h2>Challenges/Solutions</h2>
+        <h2 class="section-header">Challenges/Solutions</h2>
         <p>I decided early on to build the template as a collection of interchangeable modules. This allowed me to create fewer templates that could solve more problems and allowed the designers more flexibility in how they arranged an email to fit to the content. Since the templates themselves were going to function modularly, I also build a design system for building the templates that was modular. This allowed me to also recycle modules across templates further reducing redundant work. This allowed updates to a module to propagate throughout all templates automatically.</p>
         <p>To accompany the new templates, I built a comprehensive online documentation that not only explained the templates but also the department&rsquo;s email process and best practices.</p>
       </section>

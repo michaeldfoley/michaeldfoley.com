@@ -7,7 +7,7 @@
       </svg>
       <h1>Michael Foley</h1>
       <div class="bio">
-        <h2>Located in Brooklyn, I have been creating websites and designing emails for more than 10 years.</h2>
+        <h2>Located in Brooklyn, I have been creating websites for more than 10 years.</h2>
         <p>I am currently working as a frontend developer and email designer at Fordham University. I pride myself in being able to distill complex concepts into easy-to-use, accessible interfaces. I love working in Javascript, but also have extensive experience developing for Wordpress.</p>
       </div>
       <ul class="skills">
@@ -89,6 +89,9 @@ export default {
   main {
     background: white;
   }
+  .card {
+    min-height: 100vh;
+  }
   .intro {
     background: #fff linear-gradient(180deg, #fff, #fbfafa);
     border-bottom: 1px solid #ebeaea;
@@ -96,7 +99,6 @@ export default {
     grid-template-columns:  2fr min-content minmax(auto, 65ch) 2fr 1fr;
     grid-template-rows: min-content 1fr min-content 1fr 25vh;
     grid-gap: 1.5rem 2rem;
-    padding-top: 3rem;
     min-height: 100vh;
   }
   nav {
@@ -111,6 +113,7 @@ export default {
     grid-column: 3;
     grid-row: 1;
     font-size: 0.9em;
+    line-height: 1.5;
     margin: 0;
 
     @media screen and (min-width: $grid-break) {
@@ -126,6 +129,9 @@ export default {
   ul {
     list-style: none;
     padding: 0;
+  }
+  .nav-other {
+    margin: 2rem 0 0;
   }
   .bio {
     grid-column: 3;
@@ -164,10 +170,6 @@ export default {
       margin-right: 4rem;
       writing-mode: vertical-rl;
     }
-  }
-
-  .card {
-    min-height: 100vh;
   }
 
 

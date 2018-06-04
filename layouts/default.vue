@@ -46,13 +46,6 @@
           this.$store.commit('toggleNav', false);
         }
       }
-    },
-    transition: {
-      mode: 'out-in',
-      css: false,
-      leave (el, done) {
-        console.log('leaving trigger');
-      }
     }
   };
 </script>
@@ -75,7 +68,7 @@
   max-width: $text-width;
 }
 
-.text h2 {
+.section-header {
   color: #b5b5b7;
   font-size: 1em;
   text-transform: uppercase;
