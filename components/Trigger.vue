@@ -13,7 +13,6 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import debounce from 'debounce';
 
   export default {
     data () {
@@ -34,22 +33,6 @@
       tabIndex () {
         return (this.isTriggerOpen) ? 0 : -1;
       }
-    },
-    methods: {
-      handleScroll () {
-        this.scrollY = window.scrollY;
-        requestAnimationFrame(this.updatePage);
-      },
-      updatePage () {
-        if (!this.triggerFixed && this.scrollY > this.windowHeight * 0.15) {
-          this.triggerFixed = true;
-        } else if (this.triggerFixed && this.scrollY < this.windowHeight * 0.15) {
-          this.triggerFixed = false;
-        }
-      },
-      updateHeight: debounce(({target}) => {
-        this.windowHeight = target.innerHeight;
-      })
     },
     beforeMount () {
       this.windowHeight = window.innerHeight;
@@ -85,6 +68,7 @@
     background-color: transparent;
     cursor: pointer;
     border: 0;
+    margin-top: 0;
     padding: 0;
     position: relative;
 
@@ -114,23 +98,20 @@
 
   @include bp(md) {
     .container {
-      top: 50vh;
+      height: 100%;
       left: 0;
       right: auto;
-      padding: 1.5rem;
+      padding: 50vh 1.5rem 0;
       transform: translateX(-110%);
-    }
-
-    .trigger-fixed {
-      top: 35vh;
-      position: fixed;
     }
     .show {
       transform: translateX(0);
     }
     .trigger-btn {
+      margin: 5rem 0 0 0.3rem;
       padding: 1rem 0;
-      margin-left: 0.3rem;
+      position: sticky;
+      top: 30vh;
 
       line {
         stroke-width: 2px;
