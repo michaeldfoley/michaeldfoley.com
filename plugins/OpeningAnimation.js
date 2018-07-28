@@ -1,5 +1,5 @@
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "SplitText" }] */
-
+/*
 import {TimelineLite, Sine} from 'gsap';
 import '~/plugins/DrawSVGPlugin';
 import SplitText from '~/plugins/SplitText';
@@ -8,7 +8,7 @@ window.onNuxtReady(({$store}) => {
   let tl = new TimelineLite({
     onComplete: () => {
       $store.commit('toggleTrigger', true);
-      $store.commit('toggleOpening', true);
+      $store.commit('toggleOpening', false);
     }
   });
   let spt = new SplitText('h1', {type: 'chars'});
@@ -20,15 +20,7 @@ window.onNuxtReady(({$store}) => {
     })
     .set('aside li', {
       transformPerspective: 600,
-      perspective: 300,
-      transformStyle: 'preserve-3d'
-    })
-    .set('aside', {
-      boxSizing: 'border-box',
-      position: 'fixed',
-      visibility: 'visible',
-      width: '100%',
-      zIndex: 10001
+      perspective: 300
     })
     .set('#clipline', {visibility: 'hidden'})
     .from('#letterm', 0.7, {drawSVG: 0}, 'start+=0.1')
@@ -57,3 +49,4 @@ window.onNuxtReady(({$store}) => {
       clearProps: 'all'
     });
 });
+*/

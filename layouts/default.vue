@@ -1,9 +1,9 @@
 <template>
   <div>
-    <opening-slide v-if="$store.getters.getOpeningState" />
-    <trigger v-if="$route.name !== 'index'" id="trigger" />
-    <navigation v-if="$route.name !== 'index'" />
-    <nuxt id="pageContent" />
+    <opening-slide />
+    <trigger />
+    <navigation />
+    <nuxt id="pageContent" v-if="!isOpening" />
     <div class="hidden">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 70" role="presentation" preserveAspectRatio="xMaxYMax" focusable="false">
       <title id="title">MF Logo</title>
@@ -20,7 +20,6 @@
         <path id="letterm" fill="none" stroke-width="6" stroke-miterlimit="10" d="M4.8,2.2l0.1,6.1l0.8,24.8c0,0-0.2-22.3,0.1-22.7c2-2.7,17.1-10.6,17.6-1.2l0.7,23.3l0.6-23c0,0,16.9-10.3,17,0.4c0,0,0.1,11.7-0.1,18.5l0.6,4.6l0.6,0l0.3,0.1" clip-path="url(#mf)"/>
       </symbol>
     </svg>
-    </div>
     </div>
   </div>
 </template>
@@ -40,7 +39,8 @@
     },
     computed: {
       ...mapGetters({
-        isNavOpen: 'getNavOpen'
+        isNavOpen: 'getNavOpen',
+        isOpening: 'getOpeningState'
       })
     },
     methods: {

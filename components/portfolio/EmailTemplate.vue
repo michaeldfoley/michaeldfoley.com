@@ -69,7 +69,7 @@
 <style scoped lang="scss">
   @import "~assets/_vars.scss";
   .card {
-    background: #f9f8f8 linear-gradient(180deg, #fff, #f9f8f8);
+    background: #f1f0f0 linear-gradient(180deg, #f1f0f0, #f9f8f8);
   }
 
   .device,

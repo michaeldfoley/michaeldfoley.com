@@ -1,28 +1,5 @@
 <template>
   <main>
-    <section class="intro">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 70" class="logo" role="presentation" preserveAspectRatio="xMaxYMax" focusable="false">
-        <title id="title">MF Logo</title>
-        <use xlink:href="#mfLogo" />
-      </svg>
-      <h1>Michael Foley</h1>
-      <div class="bio">
-        <h2>Located in Brooklyn, I have been creating websites for more than 10 years.</h2>
-        <p>I am currently working as a frontend developer and email designer at Fordham University. I pride myself in being able to distill complex concepts into easy-to-use, accessible interfaces. I love working in Javascript, but also have extensive experience developing for Wordpress.</p>
-      </div>
-      <ul class="skills">
-        <li>Frontend</li>
-        <li>Wordpress</li>
-        <li>Email</li>
-      </ul>
-      <nav role="navigation">
-        <ul class="nav-other">
-          <li><nuxt-link to="/available">Resume</nuxt-link></li>
-          <li><a href="mailto:mike@foley.is">Contact</a></li>
-        </ul>
-
-      </nav>
-    </section>
     <email-template url="/working/emails" heading="h3"></email-template>
   </main>
 </template>

@@ -74,7 +74,6 @@
     line-height: 1.2;
     grid-area: 2 / 2;
     margin: 0;
-    z-index: 1001;
 
     @include bp(md) {
       font-size: 6vw;
