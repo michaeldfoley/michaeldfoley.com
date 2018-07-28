@@ -81,10 +81,8 @@
     watch: {
       isNavOpen (newValue) {
         if (newValue) {
-          console.log('nav is open');
           this.open(this.$el);
         } else {
-          console.log('nav is closed');
           this.close(this.$el);
         }
       }
@@ -96,7 +94,8 @@
         let tl = new TimelineLite();
         let spt = new SplitText('.nav-name', {type: 'chars'});
         let chars = spt.chars;
-        tl.add('start')
+        tl.delay(0.3)
+          .add('start')
           .to(el, 0.5, {
             xPercent: 100,
             ease: Sine.easeOut
