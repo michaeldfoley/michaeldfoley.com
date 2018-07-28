@@ -11,8 +11,8 @@
     "not dead"
   ],
   "dependencies": {
-    "gsap": "^1.20.4",
-    "nuxt": "1.4.0"
+    "gsap": "^2.0.1",
+    "nuxt": "^1.4.1"
   },
   "scripts": {
     "dev": "nuxt",

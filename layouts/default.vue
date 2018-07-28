@@ -1,7 +1,8 @@
 <template>
   <div>
-    <Trigger v-if="$route.name !== 'index'" id="trigger" />
-    <Navigation v-if="$route.name !== 'index'" />
+    <opening-slide v-if="$store.getters.getOpeningState" />
+    <trigger v-if="$route.name !== 'index'" id="trigger" />
+    <navigation v-if="$route.name !== 'index'" />
     <nuxt id="pageContent" />
     <div class="hidden">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 70" role="presentation" preserveAspectRatio="xMaxYMax" focusable="false">
@@ -28,12 +29,14 @@
   import { mapGetters } from 'vuex';
   import Trigger from '~/components/Trigger';
   import Navigation from '~/components/Navigation';
+  import OpeningSlide from '~/components/OpeningSlide';
   import { opening } from '~/components/mixins/opening';
   export default {
     mixins: [opening],
     components: {
       Trigger,
-      Navigation
+      Navigation,
+      OpeningSlide
     },
     computed: {
       ...mapGetters({

@@ -15,7 +15,6 @@ export const opening = {
   },
   methods: {
     preroll () {
-
     }
   }
 };

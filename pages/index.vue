@@ -1,7 +1,7 @@
 <template>
   <main>
     <section class="intro">
-      <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 70" class="logo" role="presentation" preserveAspectRatio="xMaxYMax" focusable="false">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.4 70" class="logo" role="presentation" preserveAspectRatio="xMaxYMax" focusable="false">
         <title id="title">MF Logo</title>
         <use xlink:href="#mfLogo" />
       </svg>

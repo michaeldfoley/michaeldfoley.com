@@ -26,6 +26,9 @@ body {
 ::placeholder {
   color: gray;
 }
+[hidden] {
+  display: none !important;
+}
 p {
   margin-bottom: 1.2em;
 
