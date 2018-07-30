@@ -87,7 +87,18 @@
         }
       }
     },
+    beforeMount () {
+      window.addEventListener('keyup', this.onEscapeKeyUp);
+    },
+    beforeDestroy () {
+      window.removeEventListener('keyup', this.onEscapeKeyUp);
+    },
     methods: {
+      onEscapeKeyUp (event) {
+        if (event.which === 27 && this.show) {
+          this.close(this.$el);
+        }
+      },
       open (el) {
         this.show = true;
         this.$store.commit('toggleTrigger', false);
@@ -104,7 +115,8 @@
           .staggerFrom('.nav-case a', 0.4, {
             opacity: 0,
             yPercent: 100,
-            ease: Sine.easeOut
+            ease: Sine.easeOut,
+            clearProps: 'all'
           }, 0.1, 'start+=0.2')
           .staggerFrom(chars, 0.2, {
             opacity: 0,
@@ -134,7 +146,6 @@
             ease: Sine.easeOut
           });
       }
-
     }
   };
 </script>
@@ -164,35 +175,35 @@
     color: #fff;
   }
 
-  nav {
-    a {
-      display: block;
-      line-height: 1.4;
-      &:after {
-        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 38 34'%3E%3Cpolyline fill='none' stroke='#fff' stroke-width='3' points='10,10 17,17 10,24'/%3E%3C/svg%3E");
-        display: inline-block;
-        line-height: 1;
-        width: 1em;
-        vertical-align: middle;
-        opacity: 0;
-        transform: translateX(-50%);
-        transition: transform .2s ease-out .15s, opacity .2s ease-out .15s;
-      }
-
-      &:hover:after {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
+  nav a {
+    display: block;
+    line-height: 1.4;
   }
 
   ul {
     padding: 0;
     margin: 0 0 3rem;
+
+    a {
+      transition: opacity 0.2s;
+    }
+
+    &:hover,
+    &:focus-within {
+      a {
+        opacity: 0.3;
+
+        &:hover,
+        &:focus {
+          opacity: 1;
+        }
+      }
+    }
   }
 
   li {
     list-style: none;
+
   }
 
   nav, .copyright {
@@ -251,11 +262,12 @@
   }
 
   .nav-social {
-    display: grid;
-    grid-template-columns: 2rem 2rem 2rem;
-    grid-gap: 1rem;
+    display: inline-flex;
     margin-top: 0.4em;
 
+    li + li {
+      margin-left: 1rem;
+    }
     svg {
       fill: #ffffff;
       stroke: #ffffff;
@@ -270,8 +282,11 @@
   .nav-other {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
-    a {
+    li {
       border-top: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    a {
       padding: .5rem 0;
     }
   }
