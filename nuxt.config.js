@@ -6,7 +6,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    titleTemplate: 'Michael Foley - %s',
+    titleTemplate: titleChunk => titleChunk ? `${titleChunk} - Michael Foley` : 'Michael Foley',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
