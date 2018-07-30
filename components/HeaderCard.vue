@@ -21,7 +21,7 @@
       tags: String,
       title: String,
       heading: {
-        default: 'h1',
+        default: 'h2',
         type: String
       },
       container: {

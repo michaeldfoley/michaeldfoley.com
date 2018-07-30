@@ -1,11 +1,14 @@
 <template>
   <main>
     <email-template url="/working/emails" heading="h3"></email-template>
+    <header-card2 title="Email Templates" tags="HTML,CSS/SASS,PugJS" link="/working/emails" id="workingEmails" :images="images">
+    </header-card2>
   </main>
 </template>
 
 <script>
 import EmailTemplate from '~/components/portfolio/EmailTemplate';
+import HeaderCard2 from '~/components/HeaderCard2';
 import {TimelineLite, TweenLite, Sine} from 'gsap';
 if (process.browser) {
   require('gsap/ScrollToPlugin');
@@ -15,8 +18,28 @@ export default {
   head: {
     title: 'Work'
   },
+  data () {
+    return {
+      images: [
+        {
+          src: '/img/event-m.jpg',
+          alt: 'event email screenshot'
+        }, {
+          src: '/img/enews.jpg',
+          alt: 'alumni news screenshot'
+        }, {
+          src: '/img/magazine-m.jpg',
+          alt: 'Fordham Magazine screenshot'
+        }, {
+          src: '/img/travel.jpg',
+          alt: 'upcoming travel email screenshot'
+        }
+      ]
+    };
+  },
   components: {
-    EmailTemplate
+    EmailTemplate,
+    HeaderCard2
   },
   transition: {
     mode: 'out-in',
