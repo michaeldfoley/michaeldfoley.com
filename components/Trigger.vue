@@ -1,6 +1,10 @@
 <template>
   <div class="container" :class="{ show: isTriggerOpen }">
-    <button class="trigger-btn" aria-label="Open Navigation" :tabindex="tabIndex" :aria-expanded="isNavOpen.toString()" @click="$store.commit('toggleNav')" @focus="mouseEnter" @blur="mouseLeave" @mouseenter="mouseEnter" @mouseleave="mouseLeave">
+    <button class="trigger-btn" aria-label="Open Navigation" :tabindex="tabIndex" :aria-expanded="isNavOpen.toString()" @click="toggleNav" @focus="mouseEnter" @blur="mouseLeave" @mouseenter="mouseEnter" @mouseleave="mouseLeave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="presentation" class="bg">
+        <rect x="0" y="0" width="32" height="32" />
+        <rect x="0" y="0" width="32" height="32" id="stroke" />
+      </svg>
       <div class="label">Menu</div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 16" role="presentation" id="buns">
         <line x1="0" x2="30" y1="2" y2="2" />
@@ -12,8 +16,12 @@
 
 <script>
   /* global SplitText */
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapMutations } from 'vuex';
   import { TimelineLite, Sine } from 'gsap';
+  if (process.browser) {
+    require('~/plugins/SplitText');
+    require('~/plugins/DrawSVGPlugin');
+  }
   export default {
     data () {
       return {
@@ -30,9 +38,13 @@
       }
     },
     beforeDestroy () {
-      this.$store.commit('toggleTrigger', false);
+      this.toggleTrigger(false);
     },
     methods: {
+      ...mapMutations([
+        'toggleNav',
+        'toggleTrigger'
+      ]),
       mouseEnter () {
         if (this.animated === true) return;
         this.animated = true;
@@ -40,6 +52,7 @@
         let spt = new SplitText('.label', {type: 'chars'});
         let chars = spt.chars;
         tl.add('start')
+          .set('#stroke', {strokeWidth: 2})
           .set('.label', {display: 'block'})
           .to('#buns line:first-child', 0.2, {
             y: 6,
@@ -58,7 +71,11 @@
             opacity: 0,
             xPercent: -100,
             ease: Sine.easeOut
-          }, '0.03', 'line');
+          }, '0.03', 'line')
+          .from('#stroke', 0.5, {
+            drawSVG: 0,
+            ease: Sine.easeOut
+          }, 'start');
       },
       mouseLeave () {
         this.animated = false;
@@ -66,6 +83,7 @@
         let spt = new SplitText('.label', {type: 'chars'});
         let chars = spt.chars;
         tl.add('start')
+          .set('#stroke', {strokeWidth: 2})
           .staggerTo(chars, 0.2, {
             opacity: 0,
             xPercent: -100,
@@ -82,7 +100,12 @@
             y: 0,
             ease: Sine.easeOut,
             clearProps: 'all'
-          }, 'line-=0.05');
+          }, 'line-=0.05')
+          .to('#stroke', 0.5, {
+            drawSVG: 0,
+            ease: Sine.easeOut
+          }, 'start')
+          .set('#stroke', {clearProps: 'all'});
       }
     }
   };
@@ -103,48 +126,51 @@
   .show {
     transform: translateX(0);
   }
-  svg {
-    stroke: $text-color;
-  }
   .trigger-btn {
     background-color: transparent;
     cursor: pointer;
     border: 0;
     margin-top: 0;
-    padding: 0;
-    position: relative;
     width: 4.5rem;
     height: 4.5rem;
-
-
-    &:before {
-      content: '';
-      display: block;
-      background-color: #fff;
-      position: absolute;
-      width: 4.5rem;
-      height: 4.5rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(45deg);
-    }
+    padding: 0;
+    position: relative;
 
     &:hover,
     &:focus {
+      outline: 0;
+
+      #stroke {
+        stroke-width: 2px;
+      }
       label {
         display: block;
       }
     }
-
-    svg {
-      width: 2.4rem;
-      height: 1.2rem;
-      position: relative;
-      z-index: 1000;
-    }
-
+  }
+  #buns {
+    stroke: $text-color;
+    width: 2.4rem;
+    height: 1.2rem;
+    position: relative;
+    z-index: 1000;
     line {
       stroke-width: 2px;
     }
+  }
+  .bg {
+    fill: #fff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: rotate(45deg);
+  }
+  #stroke {
+    fill: none;
+    stroke-width: 0;
+    stroke: rgba($text-color, 0.5);
   }
   .label {
     display: none;
@@ -156,6 +182,7 @@
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
+    z-index: 1001
   }
 
   @include bp(md) {
