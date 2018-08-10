@@ -62,10 +62,10 @@
         }, '0.1', 'afterm', () => {
           this.$store.commit('toggleOpening', false);
         })
-        .to('aside', 0.4, {
+        .to('aside', 0.5, {
           yPercent: -100,
-          ease: Sine.easeOut
-        }, '+=0.5')
+          ease: Sine.easeInOut
+        }, '+=0.2')
         .set('body', {
           clearProps: 'all'
         });

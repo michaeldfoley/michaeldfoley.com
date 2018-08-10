@@ -14,7 +14,10 @@ const store = () => new Vuex.Store({
       state.cardImages[card.id] = card.images;
     },
     reorderCard (state, card) {
-      card.images.push(card.images.splice(card.imageIndex, 1)[0]);
+      if (!card['cardId'] || !card['index'] || !state.cardImages[card.cardId]) return;
+      let images = state.cardImages[card.cardId];
+      images.push(images.splice(card.index, 1)[0]);
+      console.log(state.cardImages);
     },
     toggleNav (state, show) {
       state.isNavOpen = (typeof show === 'boolean') ? show : !state.isNavOpen;
@@ -24,18 +27,6 @@ const store = () => new Vuex.Store({
     },
     toggleOpening (state, show) {
       state.isOpening = (typeof show === 'boolean') ? show : !state.isOpening;
-    }
-  },
-  actions: {
-    reorderImages ({commit, state}, topImage) {
-      if (!topImage['cardId'] || !topImage['src'] || !state.cardImages[topImage.cardId]) return;
-      let images = state.cardImages[topImage.cardId];
-      let imageIndex = images.findIndex(image => image.src === topImage.src);
-      commit('reorderCard', {
-        images: images,
-        imageIndex: imageIndex
-      });
-      return imageIndex;
     }
   },
   getters: {

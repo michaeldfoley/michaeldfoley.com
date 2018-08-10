@@ -1,7 +1,8 @@
 <template>
   <main>
     <email-template url="/working/emails" heading="h3"></email-template>
-    <header-card2 title="Email Templates" tags="HTML,CSS/SASS,PugJS" link="/working/emails" id="workingEmails" :images="images">
+    <header-card2 title="email templates" tags="HTML,CSS/SASS,PugJS" link="/working/emails" id="workingEmails" :images="images">
+      Created an email template library
     </header-card2>
   </main>
 </template>
